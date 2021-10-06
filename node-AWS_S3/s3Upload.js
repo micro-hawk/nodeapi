@@ -9,7 +9,7 @@ const s3 = new AWS.S3({
 })
 
 const uploadSingleFile = (fileLocation, filename ) => {
-    const fileContent = fs.readFileSync(fileLocation)
+    const fileContent = fs.createReadStream(fileLocation)
 
     const params = {
         Bucket : process.env.AWS_BUCKET_NAME,
@@ -23,4 +23,4 @@ const uploadSingleFile = (fileLocation, filename ) => {
     })
 }
 
-uploadSingleFile('./data/test.pdf', 'sample.pdf')
+uploadSingleFile('./data/someZip.zip', 'common.zip')
