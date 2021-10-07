@@ -10,6 +10,9 @@ const s3 = new AWS.S3({
     secretAccessKey : process.env.AWS_SECRET_ACESS_KEY
 })
 
+const key = prompt('Enter the bucket filename: ')
+const localFileName = prompt('Enter the fileName you want to save: ')
+
 const downloadSingleFile = (fileLocation, fileName) => {
     const params = {
         Key : fileName,
@@ -18,12 +21,11 @@ const downloadSingleFile = (fileLocation, fileName) => {
 
     s3.getObject(params, (err, data) => {
         if(err) throw err
-        fs.createReadStream(fileLocation, data.Body)
+        fs.createWriteStream(fileLocation, data.Body)
         console.log(`File is stored at ${fileLocation}`)
         // console.log(data.Body)
     })
 }
-const key = prompt('Enter the bucket filename: ')
-const localFileName = prompt('Enter the fileName you want to save: ')
+
 
 downloadSingleFile(`./data/downloaded_data/${localFileName}`, key)

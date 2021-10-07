@@ -23,4 +23,4 @@ const uploadSingleFile = (fileLocation, filename ) => {
     })
 }
 
-uploadSingleFile('./data/someZip.zip', 'common.zip')
+uploadSingleFile('./data/knowledge_base.zip', 'knowledge_base.zip')
